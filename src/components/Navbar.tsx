@@ -3,13 +3,13 @@ import { BellFill } from "react-bootstrap-icons";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-dark bg-dark fixed-top w-100">
+    <nav className="navbar navbar-dark bg-dark fixed-top w-100 py-2">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           <span className="navbar-brand mb-0 h5 me-4">Shift Manager |</span>
           <span className="fs-6 fw-normal text-white">
             {" "}
-            TypeScript & Bootstrap component library demo
+            TypeScript & Bootstrap component library with app view demo
           </span>
         </div>
 
@@ -19,8 +19,8 @@ const Navbar = () => {
             src={profileImg}
             alt="Profile"
             style={{
-              width: "35px",
-              height: "35px",
+              width: "40px",
+              height: "40px",
               objectFit: "cover",
               borderRadius: "5px",
             }}
