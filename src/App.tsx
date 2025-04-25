@@ -12,7 +12,7 @@ function App() {
     <div className="container mt-4 pt-5 bg-gray">
       <ViewSwitcher view={view} onSwitch={() => setView(view === 'app' ? 'components' : 'app')} />
       <hr />
-      {view === 'app' ? <AppView /> : <ComponentView />}
+      {view === 'app' ? <ComponentView /> : <AppView />}
     </div>
   );
 }

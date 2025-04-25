@@ -1,11 +1,18 @@
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import ShiftForm from "../components/ShiftForm";
 import ShiftButtonGroup from "../components/ShiftButtonGroup";
 import ShiftList from "../components/ShiftList";
-import { Shift } from "../types/Shift";
 import PageButtons from "../components/PageButtons";
+import EditShiftTemplateModal from "../components/EditShiftTemplateModal";
+import DeleteShiftTemplateModal from "../components/DeleteShiftTemplateModal";
+import { Shift } from "../types/Shift";
+import { Button } from "react-bootstrap";
 
 const ComponentView = () => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const sampleShifts: Shift[] = [
     {
       id: "1",
@@ -32,12 +39,10 @@ const ComponentView = () => {
 
   const handleDelete = (id: string) => {
     console.log(`Delete shift with ID: ${id}`);
-    //placeholder for component preview
   };
 
   const handleEdit = (id: string) => {
     console.log(`Edit shift with ID: ${id}`);
-    // Placeholder for editing
   };
 
   return (
@@ -46,17 +51,19 @@ const ComponentView = () => {
         <Navbar />
         <div className="container mt-5 pt-4">
           <section className="mb-5">
-            <h5 className="mb-3 text-center">Shift Form</h5>
+            <h5 className="mb-3 text-center">Shift Form Template</h5>
             <ShiftForm />
           </section>
 
-          <section className="mb-5">
-            <h5 className="mb-3 text-center">Button Group</h5>
+          <section className="mb-5 pb-3">
+            <h5 className="mb-3 text-center">Generic Button Group</h5>
             <ShiftButtonGroup />
           </section>
 
-          <section className="mb-5">
-            <h5 className="mb-3 text-center">Shift List</h5>
+          <section className="mb-5 pb-3">
+            <h5 className="mb-3 text-center">
+              Shift List Template (with placeholders)
+            </h5>
             <ShiftList
               shifts={sampleShifts}
               onEdit={handleEdit}
@@ -64,14 +71,45 @@ const ComponentView = () => {
             />
           </section>
 
-        <section className="mb-5">
-          <h5 className="mb-5 text-center">Page Buttons</h5>
-          <PageButtons
-            totalPages={5}
-            currentPage={1}
-            onPageChange={(page) => console.log("Go to page:", page)}
+          <section className="mb-5 pb-3">
+            <h5 className="mb-3 text-center">Page Buttons Template</h5>
+            <PageButtons
+              totalPages={5}
+              currentPage={1}
+              onPageChange={(page) => console.log("Go to page:", page)}
+            />
+          </section>
+
+          <section className="mb-5 text-center py-3">
+            <h5 className="text-center">
+              Edit & Delete Modals (Click For Previews)
+            </h5>
+            <p className="text-muted">
+              (Logic stored in their own components, doesn't have to be tied to
+              below buttons, can be used elsewhere such as the actions in my
+              Shift List)
+            </p>
+            <div className="mt-3 pb-3">
+              <Button className="me-2" onClick={() => setShowEditModal(true)}>
+                Show Edit Modal
+              </Button>
+              <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
+                Show Delete Modal
+              </Button>
+            </div>
+          </section>
+
+          <EditShiftTemplateModal
+            show={showEditModal}
+            onClose={() => setShowEditModal(false)}
           />
-      </section>
+
+          <DeleteShiftTemplateModal
+            show={showDeleteModal}
+            onClose={() => setShowDeleteModal(false)}
+            onConfirm={() => console.log("Shift deleted")}
+            templateName="Afternoon Shift"
+          />
         </div>
       </div>
     </>
