@@ -8,6 +8,7 @@ import EditShiftTemplateModal from "../components/EditShiftTemplateModal";
 import DeleteShiftTemplateModal from "../components/DeleteShiftTemplateModal";
 import { Shift } from "../types/Shift";
 import { Button } from "react-bootstrap";
+import Footer from "../components/Footer";
 
 const ComponentView = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -34,6 +35,13 @@ const ComponentView = () => {
       group: "Admin",
       startTime: "16:00",
       endTime: "22:00",
+    },
+    {
+      id: "4",
+      name: "Morning Shift",
+      group: "Management",
+      startTime: "08:00",
+      endTime: "15:00",
     },
   ];
 
@@ -111,6 +119,7 @@ const ComponentView = () => {
             templateName="Afternoon Shift"
           />
         </div>
+        <Footer />
       </div>
     </>
   );

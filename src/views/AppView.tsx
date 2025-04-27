@@ -1,7 +1,8 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import ShiftForm from '../components/ShiftForm';
-import ShiftList from '../components/ShiftList';
+import React from "react";
+import Navbar from "../components/Navbar";
+import ShiftForm from "../components/ShiftForm";
+import ShiftList from "../components/ShiftList";
+import Footer from "../components/Footer";
 
 const AppView: React.FC = () => {
   const handleEdit = (id: string) => {
@@ -12,9 +13,8 @@ const AppView: React.FC = () => {
   return (
     <>
       <Navbar />
-      <h2 className="mt-3">App View</h2>
-      <ShiftForm />
       <ShiftList shifts={[]} onEdit={handleEdit} onDelete={() => {}} />
+      <Footer />
     </>
   );
 };
