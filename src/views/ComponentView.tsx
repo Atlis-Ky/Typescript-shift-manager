@@ -6,44 +6,15 @@ import ShiftList from "../components/ShiftList";
 import PageButtons from "../components/PageButtons";
 import EditShiftTemplateModal from "../components/EditShiftTemplateModal";
 import DeleteShiftTemplateModal from "../components/DeleteShiftTemplateModal";
-import { Shift } from "../types/Shift";
 import { Button } from "react-bootstrap";
 import Footer from "../components/Footer";
+import { sampleShifts } from "../data/sampleShifts";
+import AddShiftModal from "../components/AddShiftModal";
 
 const ComponentView = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const sampleShifts: Shift[] = [
-    {
-      id: "1",
-      name: "Test Shift",
-      group: "Developer",
-      startTime: "09:00",
-      endTime: "16:30",
-    },
-    {
-      id: "2",
-      name: "Afternoon Shift",
-      group: "Admin",
-      startTime: "12:00",
-      endTime: "18:00",
-    },
-    {
-      id: "3",
-      name: "Evening Shift",
-      group: "Admin",
-      startTime: "16:00",
-      endTime: "22:00",
-    },
-    {
-      id: "4",
-      name: "Morning Shift",
-      group: "Management",
-      startTime: "08:00",
-      endTime: "15:00",
-    },
-  ];
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const handleDelete = (id: string) => {
     console.log(`Delete shift with ID: ${id}`);
@@ -98,7 +69,14 @@ const ComponentView = () => {
               Shift List)
             </p>
             <div className="mt-3 pb-3">
-              <Button className="me-2" onClick={() => setShowEditModal(true)}>
+              <Button
+                variant="primary"
+                className="me-2"
+                onClick={() => setShowAddModal(true)}
+              >
+                Show Add Modal
+              </Button>
+              <Button variant="outline-primary text-black" className="me-2" onClick={() => setShowEditModal(true)}>
                 Show Edit Modal
               </Button>
               <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
@@ -107,10 +85,20 @@ const ComponentView = () => {
             </div>
           </section>
 
-          <EditShiftTemplateModal
-            show={showEditModal}
-            onClose={() => setShowEditModal(false)}
+          <AddShiftModal
+            show={showAddModal}
+            onClose={() => setShowAddModal(false)}
+            onSave={(shiftData) => console.log("New shift added:", shiftData)}
           />
+
+          <EditShiftTemplateModal
+  show={showEditModal}
+  onClose={() => setShowEditModal(false)}
+  onEdit={(updatedShiftData) => {
+    console.log("Shift updated:", updatedShiftData);
+    setShowEditModal(false);
+  }}
+/>
 
           <DeleteShiftTemplateModal
             show={showDeleteModal}

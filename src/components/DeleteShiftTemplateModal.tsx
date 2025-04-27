@@ -17,7 +17,7 @@ const DeleteShiftTemplateModal: React.FC<DeleteShiftTemplateModalProps> = ({
   return (
     <Modal show={show} onHide={onClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Delete Shift Template</Modal.Title>
+        <Modal.Title>Delete Shift</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         Are you sure you want to delete <strong>{templateName}</strong>? This
@@ -27,13 +27,7 @@ const DeleteShiftTemplateModal: React.FC<DeleteShiftTemplateModalProps> = ({
         <Button variant="outline-warning text-black" onClick={onClose}>
           Cancel
         </Button>
-        <Button
-          variant="danger"
-          onClick={() => {
-            onConfirm();
-            onClose();
-          }}
-        >
+        <Button variant="danger" onClick={onConfirm}>
           Delete
         </Button>
       </Modal.Footer>

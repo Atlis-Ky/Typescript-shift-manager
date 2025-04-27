@@ -4,15 +4,28 @@ import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 interface EditShiftTemplateModalProps {
   show: boolean;
   onClose: () => void;
+  onEdit: (updatedShiftData: any) => void; 
 }
 
 const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
   show,
   onClose,
+  onEdit,
 }) => {
+  const handleSave = () => {
+    const updatedShiftData = {
+      id: "example-id",
+      name: "Updated Shift",
+      group: "Updated Group",
+      startTime: "10:00",
+      endTime: "18:00",
+    };
+    onEdit(updatedShiftData);
+  };
+
   return (
     <Modal show={show} onHide={onClose} centered>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton style={{ backgroundColor: "#e8e9eb" }}>
         <Modal.Title>Edit Shift Template</Modal.Title>
       </Modal.Header>
 
@@ -51,7 +64,7 @@ const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
         <Button variant="outline-warning text-black" onClick={onClose}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={onClose}>
+        <Button variant="outline-primary text-black" onClick={handleSave}>
           Save Changes
         </Button>
       </Modal.Footer>

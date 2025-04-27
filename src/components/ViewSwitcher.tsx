@@ -10,7 +10,7 @@ const ViewSwitcher = ({ view, onSwitch }: ViewSwitcherProps) => {
     <div className="d-flex justify-content-center">
       <Button
         className="px-5 fw-bold fs-5"
-        variant="primary"
+        variant="outline-primary text-black border-2"
         onClick={onSwitch}
       >
         Switch to {view === "app" ? "App View" : "Component View"}
