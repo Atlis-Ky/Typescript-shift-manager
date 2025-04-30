@@ -31,7 +31,16 @@ const ComponentView = () => {
         <div className="container mt-5 pt-4">
           <section className="mb-5">
             <h5 className="mb-3 text-center">Shift Form Template</h5>
-            <ShiftForm />
+            <ShiftForm
+              name=""
+              group="Developer"
+              startTime=""
+              endTime=""
+              onNameChange={() => {}}
+              onGroupChange={() => {}}
+              onStartChange={() => {}}
+              onEndChange={() => {}}
+            />
           </section>
 
           <section className="mb-5 pb-3">
@@ -76,7 +85,11 @@ const ComponentView = () => {
               >
                 Show Add Modal
               </Button>
-              <Button variant="outline-primary text-black" className="me-2" onClick={() => setShowEditModal(true)}>
+              <Button
+                variant="outline-primary text-black"
+                className="me-2"
+                onClick={() => setShowEditModal(true)}
+              >
                 Show Edit Modal
               </Button>
               <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
@@ -92,13 +105,13 @@ const ComponentView = () => {
           />
 
           <EditShiftTemplateModal
-  show={showEditModal}
-  onClose={() => setShowEditModal(false)}
-  onEdit={(updatedShiftData) => {
-    console.log("Shift updated:", updatedShiftData);
-    setShowEditModal(false);
-  }}
-/>
+            show={showEditModal}
+            onClose={() => setShowEditModal(false)}
+            onEdit={(updatedShiftData) => {
+              console.log("Shift updated:", updatedShiftData);
+              setShowEditModal(false);
+            }}
+          />
 
           <DeleteShiftTemplateModal
             show={showDeleteModal}

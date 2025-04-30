@@ -1,6 +1,17 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
+export interface ShiftFormProps {
+  name: string;
+  group: string;
+  startTime: string;
+  endTime: string;
+  onNameChange: (value: string) => void;
+  onGroupChange: (value: string) => void;
+  onStartChange: (value: string) => void;
+  onEndChange: (value: string) => void;
+}
+
 export const ShiftName: React.FC<{
   value: string;
   onChange: (value: string) => void;
@@ -51,23 +62,27 @@ export const ShiftTime: React.FC<{
   </div>
 );
 
-const ShiftForm: React.FC = () => {
-  const [name, setName] = React.useState("");
-  const [group, setGroup] = React.useState("Developer");
-  const [start, setStart] = React.useState("");
-  const [end, setEnd] = React.useState("");
-
+const ShiftForm: React.FC<ShiftFormProps> = ({
+  name,
+  group,
+  startTime,
+  endTime,
+  onNameChange,
+  onGroupChange,
+  onStartChange,
+  onEndChange,
+}) => {
   return (
     <div className="d-flex justify-content-center">
       <div className="form-container form-container-lg">
         <Form className="mb-5">
-          <ShiftName value={name} onChange={setName} />
-          <ShiftGroup value={group} onChange={setGroup} />
+          <ShiftName value={name} onChange={onNameChange} />
+          <ShiftGroup value={group} onChange={onGroupChange} />
           <ShiftTime
-            start={start}
-            end={end}
-            onStartChange={setStart}
-            onEndChange={setEnd}
+            start={startTime}
+            end={endTime}
+            onStartChange={onStartChange}
+            onEndChange={onEndChange}
           />
         </Form>
       </div>

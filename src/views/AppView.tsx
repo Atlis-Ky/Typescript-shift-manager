@@ -8,26 +8,39 @@ import { AddNewShiftButton } from "../components/ShiftButtonGroup";
 import AddShiftModal from "../components/AddShiftModal";
 import EditShiftTemplateModal from "../components/EditShiftTemplateModal";
 import DeleteShiftTemplateModal from "../components/DeleteShiftTemplateModal";
+import { Shift } from "../types/Shift";
 
 const AppView: React.FC = () => {
+  const [shifts, setShifts] = useState<Shift[]>(sampleShifts);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedShiftId, setSelectedShiftId] = useState<string | null>(null);
 
-  const handleAddShift = (shiftData: any) => {
-    console.log("New shift added:", shiftData);
-    // Add logic to update the shift list with the new shift
-  };
-
-  const handleEdit = (id: string) => {
-    setSelectedShiftId(id); // Set the selected shift ID
-    setShowEditModal(true); // Open the edit modal
+  const handleAddShift = (shiftData: Omit<Shift, "id">) => {
+    const newShift: Shift = {
+      id: Date.now().toString(),
+      ...shiftData,
+    };
+    setShifts((prev) => [...prev, newShift]);
   };
 
   const handleDelete = (id: string) => {
-    setSelectedShiftId(id); // Set the selected shift ID
-    setShowDeleteModal(true); // Open the delete modal
+    setSelectedShiftId(id);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedShiftId) {
+      setShifts((prev) => prev.filter((shift) => shift.id !== selectedShiftId));
+    }
+    setShowDeleteModal(false);
+    setSelectedShiftId(null);
+  };
+
+  const handleEdit = (id: string) => {
+    setSelectedShiftId(id);
+    setShowEditModal(true);
   };
 
   return (
@@ -38,11 +51,7 @@ const AppView: React.FC = () => {
           <h5 className="mb-3 pb-3 fw-bold">Upcoming Shifts:</h5>
           <AddNewShiftButton onClick={() => setShowAddModal(true)} />
         </div>
-        <ShiftList
-          shifts={sampleShifts}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
+        <ShiftList shifts={shifts} onEdit={handleEdit} onDelete={handleDelete} />
       </section>
 
       <section className="mb-5 pb-3">
@@ -73,13 +82,9 @@ const AppView: React.FC = () => {
       <DeleteShiftTemplateModal
         show={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
-        onConfirm={() => {
-          console.log(`Shift with ID ${selectedShiftId} deleted`);
-          setShowDeleteModal(false);
-        }}
+        onConfirm={confirmDelete}
         templateName={
-          sampleShifts.find((shift) => shift.id === selectedShiftId)?.name ||
-          "this shift"
+          shifts.find((shift) => shift.id === selectedShiftId)?.name || "this shift"
         }
       />
     </>
