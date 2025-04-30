@@ -16,6 +16,8 @@ const AppView: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedShiftId, setSelectedShiftId] = useState<string | null>(null);
+  const [shiftToEdit, setShiftToEdit] = useState<Shift | null>(null);
+
 
   const handleAddShift = (shiftData: Omit<Shift, "id">) => {
     const newShift: Shift = {
@@ -39,8 +41,17 @@ const AppView: React.FC = () => {
   };
 
   const handleEdit = (id: string) => {
-    setSelectedShiftId(id);
+    const shift = shifts.find((s) => s.id === id);
+    setShiftToEdit(shift || null);
     setShowEditModal(true);
+  };
+
+  const confirmEdit = (updatedShift: Shift) => {
+    setShifts((prev) =>
+      prev.map((s) => (s.id === updatedShift.id ? updatedShift : s))
+    );
+    setShowEditModal(false);
+    setShiftToEdit(null);
   };
 
   return (
@@ -70,14 +81,12 @@ const AppView: React.FC = () => {
         onSave={handleAddShift}
       />
 
-      <EditShiftTemplateModal
-        show={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        onEdit={(updatedShiftData) => {
-          console.log("Shift updated:", updatedShiftData);
-          setShowEditModal(false);
-        }}
-      />
+<EditShiftTemplateModal
+  show={showEditModal}
+  onClose={() => setShowEditModal(false)}
+  onEdit={confirmEdit}
+  shiftData={shiftToEdit}
+/>
 
       <DeleteShiftTemplateModal
         show={showDeleteModal}

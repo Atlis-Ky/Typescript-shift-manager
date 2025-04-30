@@ -10,11 +10,21 @@ import { Button } from "react-bootstrap";
 import Footer from "../components/Footer";
 import { sampleShifts } from "../data/sampleShifts";
 import AddShiftModal from "../components/AddShiftModal";
+import { Shift } from "../types/Shift"; 
 
 const ComponentView = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
+
+
+  const shiftToEdit: Shift = {
+    id: "example-id",
+    name: "Afternoon Shift",
+    group: "Developer",
+    startTime: "12:00",
+    endTime: "18:00",
+  };
 
   const handleDelete = (id: string) => {
     console.log(`Delete shift with ID: ${id}`);
@@ -22,6 +32,11 @@ const ComponentView = () => {
 
   const handleEdit = (id: string) => {
     console.log(`Edit shift with ID: ${id}`);
+  };
+
+  const confirmEdit = (updatedShift: Shift) => {
+    console.log("Edited shift:", updatedShift);
+    setShowEditModal(false);
   };
 
   return (
@@ -69,9 +84,7 @@ const ComponentView = () => {
           </section>
 
           <section className="mb-5 text-center py-3">
-            <h5 className="text-center">
-              Edit & Delete Modals (Click For Previews)
-            </h5>
+            <h5 className="text-center">Edit & Delete Modals (Click For Previews)</h5>
             <p className="text-muted">
               (Logic stored in their own components, doesn't have to be tied to
               below buttons, can be used elsewhere such as the actions in my
@@ -107,10 +120,8 @@ const ComponentView = () => {
           <EditShiftTemplateModal
             show={showEditModal}
             onClose={() => setShowEditModal(false)}
-            onEdit={(updatedShiftData) => {
-              console.log("Shift updated:", updatedShiftData);
-              setShowEditModal(false);
-            }}
+            onEdit={confirmEdit}
+            shiftData={shiftToEdit}
           />
 
           <DeleteShiftTemplateModal

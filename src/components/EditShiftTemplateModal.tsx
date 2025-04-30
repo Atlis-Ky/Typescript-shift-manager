@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Shift } from "../types/Shift";
 
 interface EditShiftTemplateModalProps {
   show: boolean;
   onClose: () => void;
-  onEdit: (updatedShiftData: any) => void; 
+  onEdit: (updatedShiftData: Shift) => void;
+  shiftData: Shift | null;
 }
 
 const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
   show,
   onClose,
   onEdit,
+  shiftData,
 }) => {
+  const [name, setName] = useState("");
+  const [group, setGroup] = useState<Shift["group"]>("Developer");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  useEffect(() => {
+    if (shiftData) {
+      setName(shiftData.name);
+      setGroup(shiftData.group);
+      setStartTime(shiftData.startTime);
+      setEndTime(shiftData.endTime);
+    }
+  }, [shiftData]);
+
   const handleSave = () => {
-    const updatedShiftData = {
-      id: "example-id",
-      name: "Updated Shift",
-      group: "Updated Group",
-      startTime: "10:00",
-      endTime: "18:00",
+    if (!shiftData) return;
+
+    const updatedShift: Shift = {
+      ...shiftData,
+      name,
+      group,
+      startTime,
+      endTime,
     };
-    onEdit(updatedShiftData);
+
+    onEdit(updatedShift);
+    onClose();
   };
 
   return (
@@ -33,27 +54,46 @@ const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
         <Form>
           <Form.Group controlId="shiftName" className="mb-3">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" value="Afternoon Shift" readOnly />
+            <Form.Control
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </Form.Group>
 
           <Form.Group controlId="shiftGroup" className="mb-3">
             <Form.Label>Group</Form.Label>
-            <Form.Control as="select" disabled>
-              <option>Admin</option>
-            </Form.Control>
+            <Form.Select
+              value={group}
+              onChange={(e) =>
+                setGroup(e.target.value as Shift["group"]) 
+              }
+            >
+              <option value="Developer">Developer</option>
+              <option value="Admin">Admin</option>
+              <option value="Management">Management</option>
+            </Form.Select>
           </Form.Group>
 
           <Row>
             <Col>
               <Form.Group controlId="startTime" className="mb-3">
                 <Form.Label>Start Time</Form.Label>
-                <Form.Control type="time" value="12:00" readOnly />
+                <Form.Control
+                  type="time"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group controlId="endTime" className="mb-3">
                 <Form.Label>End Time</Form.Label>
-                <Form.Control type="time" value="18:00" readOnly />
+                <Form.Control
+                  type="time"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                />
               </Form.Group>
             </Col>
           </Row>

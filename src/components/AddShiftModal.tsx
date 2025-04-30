@@ -32,7 +32,7 @@ const AddShiftModal: React.FC<AddShiftModalProps> = ({
       endTime,
     });
 
-    // Clear form and close modal
+    // Clears out form and closes modal
     setName("");
     setGroup("Developer");
     setStartTime("");
