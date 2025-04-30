@@ -1,6 +1,6 @@
 import React from "react";
 import { Shift } from "../types/Shift";
-// import ShiftRow from "./ShiftRow";
+
 
 interface Props {
   shifts: Shift[];

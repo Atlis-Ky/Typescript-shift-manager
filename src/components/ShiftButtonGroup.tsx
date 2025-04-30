@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 
-// Export individual buttons
 export const AddNewShiftButton = ({ onClick }: { onClick?: () => void }) => (
   <Button variant="primary" onClick={onClick}>
     <i className="bi bi-plus-circle-dotted me-1"></i>Add New Shift
