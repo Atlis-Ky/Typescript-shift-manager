@@ -36,4 +36,18 @@ export const sampleShifts: Shift[] = [
     startTime: "08:00",
     endTime: "15:00",
   },
+  {
+    id: "6",
+    name: "Morning Shift",
+    group: "Developer",
+    startTime: "08:00",
+    endTime: "15:00",
+  },
+  {
+    id: "7",
+    name: "Evening Shift",
+    group: "Developer",
+    startTime: "16:00",
+    endTime: "22:00",
+  },
 ];
