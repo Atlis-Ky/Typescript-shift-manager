@@ -10,7 +10,7 @@ import EditShiftTemplateModal from "../components/EditShiftTemplateModal";
 import DeleteShiftTemplateModal from "../components/DeleteShiftTemplateModal";
 import { Shift } from "../types/Shift";
 
-const AppView: React.FC = () => {
+const AppView = () => {
   const [shifts, setShifts] = useState<Shift[]>(sampleShifts);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);

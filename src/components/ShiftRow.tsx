@@ -1,4 +1,3 @@
-import React from "react";
 import { Shift } from "../types/Shift";
 import { Button, Row, Col } from "react-bootstrap";
 
@@ -8,7 +7,7 @@ interface Props {
   onDelete: (id: string) => void;
 }
 
-const ShiftRow: React.FC<Props> = ({ shift, onEdit, onDelete }) => {
+const ShiftRow = ({ shift, onEdit, onDelete }: Props) => {
   return (
     <Row className="mb-2 align-items-center">
       <Col>{shift.name}</Col>

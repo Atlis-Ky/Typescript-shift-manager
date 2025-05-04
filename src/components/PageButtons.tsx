@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "react-bootstrap";
 
 interface PageButtonsProps {
@@ -7,11 +6,11 @@ interface PageButtonsProps {
   onPageChange: (page: number) => void;
 }
 
-const PageButtons: React.FC<PageButtonsProps> = ({
+const PageButtons = ({
   totalPages,
   currentPage,
   onPageChange,
-}) => {
+}: PageButtonsProps) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (

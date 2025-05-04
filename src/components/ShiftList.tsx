@@ -1,4 +1,3 @@
-import React from "react";
 import { Shift } from "../types/Shift";
 
 
@@ -8,10 +7,9 @@ interface Props {
   onDelete: (id: string) => void;
 }
 
-const ShiftList: React.FC<Props> = ({ shifts, onDelete, onEdit }) => {
+const ShiftList = ({ shifts, onDelete, onEdit }: Props) => {
   return (
     <div className="mt-4">
-      {/* Header Row */}
       <div className="d-flex align-items-center fw-bold border-bottom pb-3 mb-2">
         <div style={{ width: "25%" }}>Name</div>
         <div style={{ width: "25%" }}>Group</div>
@@ -19,7 +17,6 @@ const ShiftList: React.FC<Props> = ({ shifts, onDelete, onEdit }) => {
         <div style={{ width: "25%", textAlign: "right" }}>Actions</div>
       </div>
 
-      {/* Shift Rows */}
       {shifts.length > 0 ? (
         shifts.map((shift) => (
           <div

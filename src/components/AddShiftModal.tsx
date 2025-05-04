@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import ShiftForm from "./ShiftForm";
 import { AddNewShiftButton } from "./ShiftButtonGroup";
@@ -9,11 +9,7 @@ interface AddShiftModalProps {
   onSave: (shiftData: any) => void;
 }
 
-const AddShiftModal: React.FC<AddShiftModalProps> = ({
-  show,
-  onClose,
-  onSave,
-}) => {
+const AddShiftModal = ({ show, onClose, onSave }: AddShiftModalProps) => {
   const [name, setName] = useState("");
   const [group, setGroup] = useState("Developer");
   const [startTime, setStartTime] = useState("");

@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
 export interface DeleteShiftTemplateModalProps {
@@ -8,12 +7,12 @@ export interface DeleteShiftTemplateModalProps {
   templateName?: string;
 }
 
-const DeleteShiftTemplateModal: React.FC<DeleteShiftTemplateModalProps> = ({
+const DeleteShiftTemplateModal = ({
   show,
   onClose,
   onConfirm,
   templateName = "this template",
-}) => {
+}: DeleteShiftTemplateModalProps) => {
   return (
     <Modal show={show} onHide={onClose} centered>
       <Modal.Header closeButton>
