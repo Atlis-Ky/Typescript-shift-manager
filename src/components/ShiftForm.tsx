@@ -30,6 +30,8 @@ const ShiftForm = ({
             <Form.Control
               value={name}
               onChange={(e) => onNameChange(e.target.value)}
+              maxLength={22}
+              placeholder="Enter shift name"
             />
           </Form.Group>
           <Form.Group className="mb-2" id="shiftGroup">
