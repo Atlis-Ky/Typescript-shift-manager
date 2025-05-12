@@ -13,7 +13,7 @@ function App() {
       <div
       // Dynamic CSS for mobile view, causes some errors when doing a class resize so this seems to be best method for keeping viewswitcher in view on mobile devices for now
         style={{
-          paddingTop: window.innerWidth <= 576 ? "5rem" : "0", 
+          paddingTop: window.innerWidth <= 576 ? "1rem" : "0", 
         }}
       >
         <ViewSwitcher

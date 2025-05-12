@@ -7,8 +7,7 @@ const Navbar = () => {
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           <span className="navbar-brand mb-0 h5 me-4">Shift Manager |</span>
-          <span className="fs-6 fw-normal text-white">
-            {" "}
+          <span className="fs-6 fw-normal text-white d-none d-sm-inline">
             TypeScript & Bootstrap component library with app view demo
           </span>
         </div>
