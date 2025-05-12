@@ -18,7 +18,6 @@ const AppView = () => {
   const [selectedShiftId, setSelectedShiftId] = useState<string | null>(null);
   const [shiftToEdit, setShiftToEdit] = useState<Shift | null>(null);
 
-
   const handleAddShift = (shiftData: Omit<Shift, "id">) => {
     const newShift: Shift = {
       id: Date.now().toString(),
@@ -58,9 +57,13 @@ const AppView = () => {
     <>
       <Navbar />
       <section className="mb-5 pb-3">
-        <div className="d-flex justify-content-between align-items-center">
-          <h5 className="mb-3 pb-3 fw-bold">Upcoming Shifts:</h5>
-          <AddNewShiftButton onClick={() => setShowAddModal(true)} />
+        <div className="row align-items-center">
+          <div className="col-12 col-sm-6 mb-3 mb-sm-0">
+            <h5 className="fw-bold">Upcoming Shifts:</h5>
+          </div>
+          <div className="col-12 col-sm-6 text-sm-end">
+            <AddNewShiftButton onClick={() => setShowAddModal(true)} />
+          </div>
         </div>
         <ShiftList shifts={shifts} onEdit={handleEdit} onDelete={handleDelete} />
       </section>
@@ -81,19 +84,20 @@ const AppView = () => {
         onSave={handleAddShift}
       />
 
-<EditShiftTemplateModal
-  show={showEditModal}
-  onClose={() => setShowEditModal(false)}
-  onEdit={confirmEdit}
-  shiftData={shiftToEdit}
-/>
+      <EditShiftTemplateModal
+        show={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        onEdit={confirmEdit}
+        shiftData={shiftToEdit}
+      />
 
       <DeleteShiftTemplateModal
         show={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={confirmDelete}
         templateName={
-          shifts.find((shift) => shift.id === selectedShiftId)?.name || "this shift"
+          shifts.find((shift) => shift.id === selectedShiftId)?.name ||
+          "this shift"
         }
       />
     </>
