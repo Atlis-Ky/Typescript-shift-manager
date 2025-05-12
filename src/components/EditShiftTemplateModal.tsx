@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { Shift } from "../types/Shift";
 
@@ -9,12 +9,12 @@ interface EditShiftTemplateModalProps {
   shiftData: Shift | null;
 }
 
-const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
+const EditShiftTemplateModal = ({
   show,
   onClose,
   onEdit,
   shiftData,
-}) => {
+}: EditShiftTemplateModalProps) => {
   const [name, setName] = useState("");
   const [group, setGroup] = useState<Shift["group"]>("Developer");
   const [startTime, setStartTime] = useState("");
@@ -30,6 +30,7 @@ const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
   }, [shiftData]);
 
   const handleSave = () => {
+    // Validates & saves the changes made to selected shift, then closes modal
     if (!shiftData) return;
 
     const updatedShift: Shift = {
@@ -66,7 +67,7 @@ const EditShiftTemplateModal: React.FC<EditShiftTemplateModalProps> = ({
             <Form.Select
               value={group}
               onChange={(e) =>
-                setGroup(e.target.value as Shift["group"]) 
+                setGroup(e.target.value as Shift["group"])
               }
             >
               <option value="Developer">Developer</option>

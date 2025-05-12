@@ -24,7 +24,7 @@ const AddShiftModal = ({ show, onClose, onSave }: AddShiftModalProps) => {
     }
     if (name.length > 22) {
       setToastMessage("Shift name cannot exceed 22 characters.");
-      return; // have set a limit of 22 over in shift form, should just cover any unwanted edge cases
+      return; // Have set a limit of 22 over in shift form, should just cover any unwanted edge cases
     }
     if (!startTime || !endTime) {
       setToastMessage("Please provide both start and end times.");

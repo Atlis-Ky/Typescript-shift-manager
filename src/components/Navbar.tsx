@@ -12,7 +12,7 @@ const Navbar = () => {
             TypeScript & Bootstrap component library with app view demo
           </span>
         </div>
-
+    {/* Profile pic & notification icon */}
         <div className="d-flex align-items-center">
           <BellFill color="white" size={18} className="me-3" />
           <img

@@ -1,5 +1,7 @@
 import { Button } from "react-bootstrap";
 
+// custom made pagination for page navigation
+
 interface PageButtonsProps {
   totalPages: number;
   currentPage: number;
@@ -11,7 +13,7 @@ const PageButtons = ({
   currentPage,
   onPageChange,
 }: PageButtonsProps) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1); // Generates an array of page numbers, covers any cases where page start to scale up or end up as 0 for some reason
 
   return (
     <div className="d-flex justify-content-center align-items-center gap-1 pb-2">
